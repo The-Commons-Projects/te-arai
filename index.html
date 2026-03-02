@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Commons | Te Arai</title>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Karla:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #1C1814; --bark: #4A3F32; --warm: #EBE2D5;
+  --rust: #A84E28; --white: #FFFFFF;
+}
+*, *::before, *::after { box-sizing: border-box; }
+body { margin: 0; padding: 0; background: var(--ink); -webkit-font-smoothing: antialiased; }
+::selection { background: #A84E2844; color: var(--white); }
+.serif { font-family: 'Libre Baskerville', serif; }
+.sans { font-family: 'Karla', sans-serif; }
+.fade-in { opacity: 0; transform: translateY(28px); transition: opacity 0.7s ease, transform 0.7s ease; }
+.fade-in.visible { opacity: 1; transform: translateY(0); }
+.fade-d2 { transition-delay: 0.2s; }
+.fade-d3 { transition-delay: 0.3s; }
+.fade-d4 { transition-delay: 0.4s; }
+.fade-d6 { transition-delay: 0.6s; }
+
+.landing {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+.landing-bg {
+  position: absolute;
+  inset: 0;
+  background: url('images/hero-home.jpg') center/cover;
+  filter: brightness(0.35) saturate(0.85);
+}
+.landing-overlay {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at center, transparent 0%, #1C181488 60%, #1C1814cc 100%);
+}
+.landing-content {
+  position: relative;
+  text-align: center;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.divider { width: 40px; height: 1px; background: var(--rust); margin: 0 auto; }
+.landing-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 48px;
+  max-width: 320px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.landing-btn {
+  display: block;
+  font-family: 'Karla', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-decoration: none;
+  padding: 16px 48px;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+  text-align: center;
+}
+.landing-btn-primary {
+  background: var(--rust);
+  color: var(--white);
+  border: 1px solid var(--rust);
+}
+.landing-btn-primary:hover {
+  background: #bf5a30;
+  border-color: #bf5a30;
+  transform: translateY(-2px);
+}
+</style>
+</head>
+<body>
+
+<div class="landing">
+  <div class="landing-bg"></div>
+  <div class="landing-overlay"></div>
+  <div class="landing-content">
+    <div class="fade-in" style="display:inline-block;text-align:left;">
+      <p class="serif" style="font-size:16px;color:var(--warm);font-style:italic;opacity:0.7;margin:0 0 4px;">The</p>
+      <h1 class="serif" style="font-size:clamp(44px,7vw,80px);color:var(--white);font-weight:700;line-height:1;margin:0;letter-spacing:-0.02em;white-space:nowrap;">Commons <span style="color:var(--white);font-weight:400;">|</span> Te Arai</h1>
+    </div>
+    <div class="fade-in fade-d2">
+      <p class="sans" style="font-size:14px;color:var(--warm);letter-spacing:0.08em;margin-top:24px;opacity:0.5;">PAVILION COMPOUND &middot; FAMILY MEMORIES &middot; PAYS FOR ITSELF</p>
+    </div>
+
+    <div class="landing-buttons fade-in fade-d3">
+      <a href="pitch.html" class="landing-btn landing-btn-primary">THE PITCH</a>
+      <a href="site.html" class="landing-btn landing-btn-primary">THE WEBSITE</a>
+      <a href="The_Commons_Te_Arai_Financial_Model.xlsx" class="landing-btn landing-btn-primary" download>THE FINANCIALS</a>
+    </div>
+
+    <div class="fade-in fade-d6">
+      <p class="sans" style="font-size:11px;color:var(--warm);opacity:0.35;letter-spacing:0.15em;margin-top:64px;">MT2</p>
+    </div>
+  </div>
+</div>
+
+<script>
+(function() {
+  var els = document.querySelectorAll('.fade-in');
+  var obs = new IntersectionObserver(function(entries) {
+    entries.forEach(function(e) {
+      if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }
+    });
+  }, { threshold: 0.12 });
+  els.forEach(function(el) { obs.observe(el); });
+})();
+</script>
+</body>
+</html>
