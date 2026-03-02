@@ -69,6 +69,32 @@ footer { background: var(--ink); padding: 48px 8%; border-top: 1px solid #4A3F32
 footer .inner { max-width: 1100px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px; }
 footer a { text-decoration: none; background: none; border: none; cursor: pointer; font-family: 'Karla', sans-serif; font-size: 12px; color: var(--warm); opacity: 0.5; }
 footer a:hover { opacity: 0.8; }
+
+/* Mobile nav toggle */
+.nav-toggle { display: none; background: none; border: none; cursor: pointer; padding: 8px; }
+.nav-toggle span { display: block; width: 20px; height: 2px; background: var(--warm); margin: 4px 0; transition: 0.3s; }
+
+@media (max-width: 900px) {
+  .nav-links { display: none; flex-direction: column; position: absolute; top: 64px; right: 0; background: #1C1814f0; backdrop-filter: blur(12px); padding: 24px 32px; gap: 20px; border-radius: 0 0 4px 4px; }
+  .nav-links.open { display: flex; }
+  .nav-toggle { display: block; }
+  .grid-3, .grid-4 { grid-template-columns: repeat(2, 1fr); }
+  .grid-6 { grid-template-columns: repeat(3, 1fr); }
+  .pricing-grid { grid-template-columns: repeat(2, 1fr); }
+  .card-uniform { height: auto; }
+  .card-uniform .card-items p { white-space: normal; }
+}
+@media (max-width: 600px) {
+  .section { padding: 64px 6%; }
+  .hero-content { padding: 0 6% 48px; }
+  .hero-content h1 { font-size: clamp(32px, 9vw, 60px) !important; white-space: normal !important; }
+  .hero-content p { white-space: normal !important; }
+  .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
+  .grid-6 { grid-template-columns: repeat(2, 1fr); }
+  .pricing-grid { grid-template-columns: 1fr 1fr; padding: 24px 20px; }
+  nav { padding: 0 4%; }
+  footer .inner { flex-direction: column; text-align: center; }
+}
 </style>
 </head>
 <body>
@@ -79,12 +105,15 @@ footer a:hover { opacity: 0.8; }
       <a href="index.html" class="sans" style="font-size:12px;color:var(--warm);opacity:0.5;letter-spacing:0.03em;">&larr; Back</a>
       <a href="#" onclick="showPage('home')" class="serif" style="font-size:18px;color:var(--white);font-weight:700;">The Commons <span style="color:var(--white);font-weight:400;">|</span> Te Arai</a>
     </div>
+    <button class="nav-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')">
+      <span></span><span></span><span></span>
+    </button>
     <div class="nav-links">
-      <a href="#property" class="sans nav-link" onclick="showPage('home')">The Property</a>
-      <a href="#area" class="sans nav-link" onclick="showPage('home')">The Area</a>
-      <a href="#stay" class="sans nav-link" onclick="showPage('home')">Your Stay</a>
-      <button class="sans nav-golf" onclick="showPage('golf')">GOLF</button>
-      <a href="#book" class="sans nav-book">BOOK</a>
+      <a href="#property" class="sans nav-link" onclick="showPage('home');document.querySelector('.nav-links').classList.remove('open')">The Property</a>
+      <a href="#area" class="sans nav-link" onclick="showPage('home');document.querySelector('.nav-links').classList.remove('open')">The Area</a>
+      <a href="#stay" class="sans nav-link" onclick="showPage('home');document.querySelector('.nav-links').classList.remove('open')">Your Stay</a>
+      <button class="sans nav-golf" onclick="showPage('golf');document.querySelector('.nav-links').classList.remove('open')">GOLF</button>
+      <a href="#book" class="sans nav-book" onclick="document.querySelector('.nav-links').classList.remove('open')">BOOK</a>
     </div>
   </div>
 </nav>
@@ -171,7 +200,7 @@ footer a:hover { opacity: 0.8; }
         <div class="fade-in fade-d2"><h4 class="serif" style="font-size:15px;color:var(--rust);font-weight:700;margin:0;">Riding</h4><p class="sans" style="font-size:13px;color:var(--warm);opacity:0.55;line-height:1.7;margin-top:8px;">Horse riding on the beach · On-site yards and paddocks · Local stables · Farm tracks</p></div>
         <div class="fade-in fade-d3"><h4 class="serif" style="font-size:15px;color:var(--rust);font-weight:700;margin:0;">Village</h4><p class="sans" style="font-size:13px;color:var(--warm);opacity:0.55;line-height:1.7;margin-top:8px;">Mangawhai village · Cafes · Supermarket · Restaurants · Markets</p></div>
       </div>
-      <div class="fade-in fade-d3" style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:56px;padding:32px 0;border-top:1px solid #4A3F3233;">
+      <div class="fade-in fade-d3 grid-4" style="padding:32px 0;border-top:1px solid #4A3F3233;">
         <div style="text-align:center;"><p class="stat-num" style="font-size:32px;">4</p><p class="stat-label">Golf courses nearby</p></div>
         <div style="text-align:center;"><p class="stat-num" style="font-size:32px;">12+</p><p class="stat-label">Beaches</p></div>
         <div style="text-align:center;"><p class="stat-num" style="font-size:32px;">10</p><p class="stat-label">Min to everything</p></div>
@@ -323,7 +352,7 @@ footer a:hover { opacity: 0.8; }
       <div class="fade-in"><h2 style="color:var(--white);">The golf simulator</h2></div>
       <div class="fade-in fade-d1"><p class="sub" style="color:var(--rust);">Your private practice facility.</p></div>
       <div class="fade-in fade-d2"><p class="body-text" style="color:var(--warm);opacity:0.8;">Full launch monitor setup in an insulated shed on the property. Dial in your game before your round, replay the back nine after dinner, or settle a bet when the weather turns. It's there whenever you want it — no bookings, no queues.</p></div>
-      <div class="fade-in fade-d3" style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:40px;padding:28px 0;border-top:1px solid #4A3F3233;">
+      <div class="fade-in fade-d3 grid-3" style="padding:28px 0;border-top:1px solid #4A3F3233;">
         <div style="text-align:center;"><p class="stat-num" style="font-size:28px;">Dedicated</p><p class="stat-label">Shed on the property</p></div>
         <div style="text-align:center;"><p class="stat-num" style="font-size:28px;">24/7</p><p class="stat-label">Access</p></div>
         <div style="text-align:center;"><p class="stat-num" style="font-size:28px;">Full</p><p class="stat-label">Launch monitor</p></div>
@@ -337,7 +366,7 @@ footer a:hover { opacity: 0.8; }
       <div class="fade-in"><h2 style="color:var(--white);">Your base</h2></div>
       <div class="fade-in fade-d1"><p class="sub" style="color:var(--rust);">Not a hotel. A compound.</p></div>
       <div class="fade-in fade-d2"><p class="body-text" style="color:var(--warm);opacity:0.8;">Two bedroom wings around a central courtyard. Four king bedrooms — three with ensuites, all convert to twin singles for groups — plus a bunk room. Sleeps 8-12, so the whole group stays under one roof. Covered walkways, open-plan living, and a covered outdoor deck. This is where the post-round starts.</p></div>
-      <div class="fade-in fade-d3" style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:40px;">
+      <div class="fade-in fade-d3 grid-4">
         <div style="text-align:center;padding:20px 0;"><p class="stat-num" style="font-size:24px;">8-12</p><p class="stat-label">Guests</p></div>
         <div style="text-align:center;padding:20px 0;"><p class="stat-num" style="font-size:24px;">4+4</p><p class="stat-label">Beds + bunks</p></div>
         <div style="text-align:center;padding:20px 0;"><p class="stat-num" style="font-size:24px;">3</p><p class="stat-label">Ensuites</p></div>
