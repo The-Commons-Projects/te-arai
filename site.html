@@ -87,13 +87,17 @@ footer a:hover { opacity: 0.8; }
 @media (max-width: 600px) {
   .section { padding: 64px 6%; }
   .hero-content { padding: 0 6% 48px; }
-  .hero-content h1 { font-size: clamp(32px, 9vw, 60px) !important; white-space: normal !important; }
+  .hero-content h1 { font-size: clamp(28px, 8vw, 48px) !important; }
   .hero-content p { white-space: normal !important; }
   .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
   .grid-6 { grid-template-columns: repeat(2, 1fr); }
   .pricing-grid { grid-template-columns: 1fr 1fr; padding: 24px 20px; }
+  .card-uniform { height: auto; }
+  .card-uniform .card-items p { white-space: normal; }
   nav { padding: 0 4%; }
+  nav .inner > div:first-child a[class*="serif"] { font-size: 15px !important; }
   footer .inner { flex-direction: column; text-align: center; }
+  h2 { font-size: clamp(24px, 6vw, 42px) !important; }
 }
 </style>
 </head>
@@ -103,7 +107,7 @@ footer a:hover { opacity: 0.8; }
   <div class="inner">
     <div style="display:flex;align-items:center;gap:20px;">
       <a href="index.html" class="sans" style="font-size:12px;color:var(--warm);opacity:0.5;letter-spacing:0.03em;">&larr; Back</a>
-      <a href="#" onclick="showPage('home')" class="serif" style="font-size:18px;color:var(--white);font-weight:700;">The Commons <span style="color:var(--white);font-weight:400;">|</span> Te Arai</a>
+      <a href="#" onclick="showPage('home')" class="serif" style="font-size:18px;color:var(--white);font-weight:700;white-space:nowrap;">The Commons <span style="color:var(--white);font-weight:400;">|</span> Te Arai</a>
     </div>
     <button class="nav-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')">
       <span></span><span></span><span></span>
